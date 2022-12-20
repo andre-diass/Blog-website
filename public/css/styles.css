@@ -16,10 +16,13 @@ body{
 
 }
 
+
+
 .main-div{
     margin: 1% 7% 1% 7%;
 }
 
+/* Navbar */
  .container-fluid {
     color: #B2B2B2;
     
@@ -63,6 +66,14 @@ body{
 }
 
 
+/* compose page */
+.form-label{
+    color: white;
+    
+}
+
+
+/* footer */
 .footer-padding {
 	padding-bottom: 60px;
 }
