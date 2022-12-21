@@ -3,6 +3,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const lodash = require("lodash") 
 
 const homeStartingContent = "Lacus vel facilisis volutpat est velit egestas dui id ornare. Semper auctor neque vitae tempus quam. Sit amet cursus sit amet dictum sit amet justo. Viverra tellus in hac habitasse.";
 
@@ -23,8 +24,6 @@ let posts = []
 app.get("/", function (req, res) {
    res.render("home" , {startingContent: homeStartingContent, 
    posts: posts})
-   
-  
    
 })
 
@@ -51,7 +50,27 @@ app.post("/compose" , function (req,res) {
   posts.push(post);
   res.redirect("/")
   
-})
+});
+
+//use express route parameters
+app.get("/posts/:test", function (req, res) {
+  //to lower case the parameter input and take hyphen out using lodash module
+  const routeParameter = lodash.lowerCase(req.params.test);
+  console.log(routeParameter);
+  
+  
+  posts.forEach(element => {
+    let title = element.title.toLowerCase();
+    let bodyContent = element.content;
+    
+    if (title == routeParameter) { 
+      res.render("post" , {title:title , body:bodyContent } )
+      
+    }});
+    
+    
+  
+});
 
 
 app.listen(3000, function() {
@@ -60,4 +79,3 @@ app.listen(3000, function() {
 
 
 
- 
